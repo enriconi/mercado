@@ -5,52 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <title>Mercado</title>
+  <title>Calculadora de Valores</title>
 </head>
 
 <body>
-  <section class="container">
-    <!-- <div class="container-button">
-      <input type="text" id="name" placeholder="Digite um nome">
-      <button onclick="addName()">Adicionar</button>
-    </div> -->
-    <!-- <div id="listNames"></div> -->
-    <div class="container-names">
-      <button>Enriconi</button>
-      <button>Gustavo</button>
-      <button>Vinícius</button>
-    </div>
+  <h1>Calculadora de Valores</h1>
 
-    <div class="container-items">
-      <div class="item">
-        <img class="img"></img>
-        <div class="item-info">
-          <h3>Item 1</h3>
-          <p>Enriconi | Vinicius</p>
-        </div>
-        <p>R$ 10,00</p>
-        <button>Excluir</button>
-      </div>
-      <div class="item">
-        <img class="img"></img>
-        <div class="item-info">
-          <h3>Item 2</h3>
-          <p>Enriconi | Gustavo | Vinicius</p>
-        </div>
-        <p>R$ 10,00</p>
-        <button>Excluir</button>
-      </div>
-      <div class="item">
-        <img class="img"></img>
-        <div class="item-info">
-          <h3>Item 3</h3>
-          <p>Enriconi</p>
-        </div>
-        <p>R$ 23,33</p>
-        <button>Excluir</button>
-      </div>
-    </div>
-  </section>
+  <label for="btnA">A</label>
+  <input type="checkbox" id="btnA" name="botao" value="A">
+
+  <label for="btnB">B</label>
+  <input type="checkbox" id="btnB" name="botao" value="B">
+
+  <label for="quantidade">Quantidade:</label>
+  <input type="number" id="quantidade" name="quantidade">
+
+  <label for="valor">Valor:</label>
+  <input type="number" id="valor" name="valor">
+
+  <label for="nomeItem">Nome do Item:</label>
+  <input type="text" id="nomeItem" name="nomeItem">
+
+  <button onclick="calcular()">Calcular</button>
+
+  <h2>Resultados</h2>
+  <ul id="listaResultados"></ul>
+
+  <h2>Histórico</h2>
+  <ul id="listaHistorico"></ul>
 </body>
 
 <script src="js/script.js"></script>
