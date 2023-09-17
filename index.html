@@ -15,16 +15,13 @@
   <label for="btnB">B</label>
   <input type="checkbox" id="btnB" name="botao" value="B">
 
-  <label for="quantidade">Quantidade:</label>
-  <input type="number" id="quantidade" name="quantidade">
+  <section class="container-input">
+    <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade">
+    <input type="number" id="preco" name="preco" placeholder="Preço">
+    <input type="text" id="descricao" name="descricao" placeholder="Descrição">
+  </section>
 
-  <label for="valor">Valor:</label>
-  <input type="number" id="valor" name="valor">
-
-  <label for="nomeItem">Nome do Item:</label>
-  <input type="text" id="nomeItem" name="nomeItem">
-
-  <button onclick="calcular()">Calcular</button>
+  <button class="btn-calcular" onclick="calcular()">Calcular</button>
 
   <h2>Resultados</h2>
   <ul id="listaResultados"></ul>

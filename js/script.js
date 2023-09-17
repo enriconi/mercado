@@ -7,28 +7,28 @@ function calcular() {
   const btnA = document.getElementById('btnA');
   const btnB = document.getElementById('btnB');
   const quantidadeInput = document.getElementById('quantidade');
-  const valorInput = document.getElementById('valor');
-  const nomeItemInput = document.getElementById('nomeItem');
+  const precoInput = document.getElementById('preco');
+  const descricaoInput = document.getElementById('descricao');
 
   const quantidade = parseFloat(quantidadeInput.value);
-  const valor = parseFloat(valorInput.value);
-  const nomeItem = nomeItemInput.value;
+  const preco = parseFloat(precoInput.value);
+  const descricao = descricaoInput.value;
 
   if (btnA.checked) {
-    resultadoA += btnB.checked ? (valor * quantidade) / 2 : valor * quantidade;
+    resultadoA += btnB.checked ? (preco * quantidade) / 2 : preco * quantidade;
     adicionarResultadoLista('A', resultadoA);
-    adicionarHistorico('A', nomeItem, valor, quantidade);
+    adicionarHistorico('A', descricao, preco, quantidade);
   }
 
   if (btnB.checked) {
-    resultadoB += btnA.checked ? (valor * quantidade) / 2 : valor * quantidade;
+    resultadoB += btnA.checked ? (preco * quantidade) / 2 : preco * quantidade;
     adicionarResultadoLista('B', resultadoB);
-    adicionarHistorico('B', nomeItem, valor, quantidade);
+    adicionarHistorico('B', descricao, preco, quantidade);
   }
 
   quantidadeInput.value = '';
-  valorInput.value = '';
-  nomeItemInput.value = '';
+  precoInput.value = '';
+  descricaoInput.value = '';
 }
 
 function adicionarResultadoLista(botao, resultado) {
@@ -37,9 +37,9 @@ function adicionarResultadoLista(botao, resultado) {
   listaResultados.appendChild(item);
 }
 
-function adicionarHistorico(botao, nomeItem, valor, quantidade) {
+function adicionarHistorico(botao, descricao, preco, quantidade) {
   const item = document.createElement('li');
-  item.textContent = `${botao}: ${nomeItem} - QTD ${quantidade} - VALOR R$ ${valor.toFixed(
+  item.textContent = `${botao}: ${descricao} - QTD ${quantidade} - preco R$ ${preco.toFixed(
     2,
   )}`;
 

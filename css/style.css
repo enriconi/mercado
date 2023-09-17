@@ -21,3 +21,34 @@ body {
   background-color: #323238;
   min-height: 100vh;
 }
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.container-input input {
+  padding: 16px;
+  background-color: #121214;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+
+  font-size: 16px;
+  font-weight: 400;
+  color: #7c7c8a;
+}
+
+.btn-calcular {
+  margin-top: 24px;
+
+  padding: 12px 20px;
+  background-color: #00875f;
+  border: none;
+  border-radius: 6px;
+  
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
