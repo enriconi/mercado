@@ -9,7 +9,9 @@ body,
 ul,
 li,
 button,
-input {
+input,
+h1,
+h2 {
   margin: 0;
   padding: 0;
 }
@@ -17,6 +19,7 @@ input {
 body {
   display: flex;
   flex-direction: column;
+  gap: 24px;
   padding: 24px;
   background-color: #323238;
   min-height: 100vh;
@@ -41,8 +44,6 @@ body {
 }
 
 .btn-calcular {
-  margin-top: 24px;
-
   padding: 12px 20px;
   background-color: #00875f;
   border: none;
@@ -51,4 +52,27 @@ body {
   font-size: 16px;
   font-weight: 700;
   color: #fff;
+}
+
+.container-checkbox {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.checkbox-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+
+  background-color: #29292E;
+  padding: 16px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-size: 16px;
+  font-weight: 400;
+  color: #c4c4cc;
 }
