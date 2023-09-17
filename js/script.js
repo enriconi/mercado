@@ -33,15 +33,28 @@ function calcular() {
 
 function adicionarResultadoLista(botao, resultado) {
   const item = document.createElement('li');
-  item.textContent = `${botao}: R$ ${resultado.toFixed(2)}`;
+  item.classList.add('item-result');
+  const title = document.createElement('h3');
+  title.textContent = `${botao}`;
+  const price = document.createElement('p');
+  price.textContent = `R$ ${resultado.toFixed(2)}`;
+  item.appendChild(title);
+  item.appendChild(price);
   listaResultados.appendChild(item);
 }
 
 function adicionarHistorico(botao, descricao, preco, quantidade) {
   const item = document.createElement('li');
-  item.textContent = `${botao}: ${descricao} - QTD ${quantidade} - preco R$ ${preco.toFixed(
-    2,
-  )}`;
+  item.classList.add('item-history');
+  const title = document.createElement('h3');
+  title.textContent = `${descricao}`;
+  const price = document.createElement('p');
+  price.textContent = `R$ ${preco.toFixed(2)}`;
+  item.appendChild(title);
+  item.appendChild(price);
+  // item.textContent = `${botao}: ${descricao} - QTD ${quantidade} - preco R$ ${preco.toFixed(
+  //   2,
+  // )}`;
 
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'Deletar';

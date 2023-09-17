@@ -11,9 +11,15 @@ li,
 button,
 input,
 h1,
-h2 {
+h2,
+h3,
+p {
   margin: 0;
   padding: 0;
+}
+
+ul {
+  list-style: none;
 }
 
 body {
@@ -21,7 +27,7 @@ body {
   flex-direction: column;
   gap: 24px;
   padding: 24px;
-  background-color: #323238;
+  background-color: #202024;
   min-height: 100vh;
 }
 
@@ -75,4 +81,54 @@ body {
   font-size: 16px;
   font-weight: 400;
   color: #c4c4cc;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #c4c4cc;
+}
+
+.item-result {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  background-color: #323238;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.item-result h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #c4c4cc;
+}
+
+.item-result p {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e1e1e6;
+}
+
+.item-history {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+   
+  background-color: #29292e;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.item-history h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #c4c4cc;
+}
+
+.item-history p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f75a68;
 }
