@@ -32,15 +32,25 @@ function calcular() {
 }
 
 function adicionarResultadoLista(botao, resultado) {
-  const item = document.createElement('li');
-  item.classList.add('item-result');
-  const title = document.createElement('h3');
-  title.textContent = `${botao}`;
-  const price = document.createElement('p');
-  price.textContent = `R$ ${resultado.toFixed(2)}`;
-  item.appendChild(title);
-  item.appendChild(price);
-  listaResultados.appendChild(item);
+  const checkElement = document.getElementById(botao);
+  if (checkElement) {
+    const value = checkElement.querySelector('p');
+    const numericPrice = parseFloat(
+      value.textContent.replace(/[^0-9.-]+/g, ''),
+    );
+    value.textContent = `R$ ${(numericPrice + resultado).toFixed(2)}`;
+  } else {
+    const item = document.createElement('li');
+    item.classList.add('item-result');
+    item.id = botao;
+    const title = document.createElement('h3');
+    title.textContent = `${botao}`;
+    const price = document.createElement('p');
+    price.textContent = `R$ ${resultado.toFixed(2)}`;
+    item.appendChild(title);
+    item.appendChild(price);
+    listaResultados.appendChild(item);
+  }
 }
 
 function adicionarHistorico(botao, descricao, preco, quantidade) {
