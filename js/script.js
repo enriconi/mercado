@@ -1,5 +1,5 @@
-const listaResultados = document.getElementById('listaResultados');
-const listaHistorico = document.getElementById('listaHistorico');
+const listaResultados = document.getElementById('price-list');
+const listaHistorico = document.getElementById('historic-list');
 let resultadoA = 0;
 let resultadoB = 0;
 

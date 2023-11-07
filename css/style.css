@@ -132,3 +132,10 @@ h2 {
   font-weight: 700;
   color: #f75a68;
 }
+
+#price-list,
+#historic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
