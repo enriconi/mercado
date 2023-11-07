@@ -33,45 +33,67 @@ function calcular() {
 
 function adicionarResultadoLista(botao, resultado) {
   const checkElement = document.getElementById(botao);
+
   if (checkElement) {
     const value = checkElement.querySelector('p');
-    const numericPrice = parseFloat(
-      value.textContent.replace(/[^0-9.-]+/g, ''),
-    );
-    value.textContent = `R$ ${(numericPrice + resultado).toFixed(2)}`;
+    value.textContent = `R$ ${resultado.toFixed(2)}`;
   } else {
-    const item = document.createElement('li');
-    item.classList.add('item-result');
-    item.id = botao;
-    const title = document.createElement('h3');
-    title.textContent = `${botao}`;
-    const price = document.createElement('p');
-    price.textContent = `R$ ${resultado.toFixed(2)}`;
-    item.appendChild(title);
-    item.appendChild(price);
+    const item = createListItem(botao, resultado);
     listaResultados.appendChild(item);
   }
 }
 
-function adicionarHistorico(botao, descricao, preco, quantidade) {
+function createListItem(botao, resultado) {
   const item = document.createElement('li');
-  item.classList.add('item-history');
+  item.classList.add('item-result');
+  item.id = botao;
+
   const title = document.createElement('h3');
-  title.textContent = `${descricao}`;
+  title.textContent = botao;
+
   const price = document.createElement('p');
-  price.textContent = `R$ ${preco.toFixed(2)}`;
+  price.textContent = `R$ ${resultado.toFixed(2)}`;
+
   item.appendChild(title);
   item.appendChild(price);
+
+  return item;
+}
+
+function adicionarHistorico(botao, descricao, preco, quantidade) {
   // item.textContent = `${botao}: ${descricao} - QTD ${quantidade} - preco R$ ${preco.toFixed(
   //   2,
   // )}`;
+  const item = createHistoryItem(descricao, preco);
+  const deleteButton = createDeleteButton(item);
 
+  item.appendChild(deleteButton);
+  listaHistorico.appendChild(item);
+}
+
+function createHistoryItem(descricao, preco) {
+  const item = document.createElement('li');
+  item.classList.add('item-history');
+
+  const title = document.createElement('h3');
+  title.textContent = descricao;
+
+  const price = document.createElement('p');
+  price.textContent = `R$ ${preco.toFixed(2)}`;
+
+  item.appendChild(title);
+  item.appendChild(price);
+
+  return item;
+}
+
+function createDeleteButton(item) {
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'Deletar';
+
   deleteButton.addEventListener('click', () => {
     listaHistorico.removeChild(item);
   });
 
-  item.appendChild(deleteButton);
-  listaHistorico.appendChild(item);
+  return deleteButton;
 }
