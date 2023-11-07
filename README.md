@@ -7,4 +7,5 @@
 - [ ] Delete items and recalculate price;
 - [ ] Light mode;
 - [ ] Download json items;
+- [x] Form validation;
 - [ ] Tag items (?).

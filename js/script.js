@@ -6,9 +6,15 @@ let resultadoB = 0;
 function calcular() {
   const btnA = document.getElementById('btnA');
   const btnB = document.getElementById('btnB');
+
   const quantidadeInput = document.getElementById('quantidade');
   const precoInput = document.getElementById('preco');
   const descricaoInput = document.getElementById('descricao');
+
+  if (!quantidadeInput.value || !precoInput.value || !descricaoInput.value) {
+    alert('Preencha todos os campos.');
+    return;
+  }
 
   const quantidade = parseFloat(quantidadeInput.value);
   const preco = parseFloat(precoInput.value);
