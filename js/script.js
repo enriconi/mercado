@@ -11,8 +11,11 @@ function calcular() {
   const precoInput = document.getElementById('preco');
   const descricaoInput = document.getElementById('descricao');
 
-  if (!quantidadeInput.value || !precoInput.value || !descricaoInput.value) {
-    alert('Preencha todos os campos.');
+  if (
+    !validateInput(quantidadeInput) ||
+    !validateInput(precoInput) ||
+    !validateInput(descricaoInput)
+  ) {
     return;
   }
 
@@ -102,4 +105,14 @@ function createDeleteButton(item) {
   });
 
   return deleteButton;
+}
+
+function validateInput(inputElement) {
+  if (!inputElement.value) {
+    inputElement.classList.add('error');
+    return false;
+  } else {
+    inputElement.classList.remove('error');
+    return true;
+  }
 }
