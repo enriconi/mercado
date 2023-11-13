@@ -1,67 +1,67 @@
-const listaResultados = document.getElementById('price-list');
-const listaHistorico = document.getElementById('historic-list');
-let resultadoA = 0;
-let resultadoB = 0;
+const resultList = document.getElementById('price-list');
+const historyList = document.getElementById('historic-list');
+let resultA = 0;
+let resultB = 0;
 
-function calcular() {
+function calculate() {
   const btnA = document.getElementById('btnA');
   const btnB = document.getElementById('btnB');
 
-  const quantidadeInput = document.getElementById('quantidade');
-  const precoInput = document.getElementById('preco');
-  const descricaoInput = document.getElementById('descricao');
+  const quantityInput = document.getElementById('quantity');
+  const priceInput = document.getElementById('price');
+  const descriptionInput = document.getElementById('description');
 
   if (
-    !validateInput(quantidadeInput) ||
-    !validateInput(precoInput) ||
-    !validateInput(descricaoInput)
+    !validateInput(quantityInput) ||
+    !validateInput(priceInput) ||
+    !validateInput(descriptionInput)
   ) {
     return;
   }
 
-  const quantidade = parseFloat(quantidadeInput.value);
-  const preco = parseFloat(precoInput.value);
-  const descricao = descricaoInput.value;
+  const quantity = parseFloat(quantityInput.value);
+  const price = parseFloat(priceInput.value);
+  const description = descriptionInput.value;
 
   if (btnA.checked) {
-    resultadoA += btnB.checked ? (preco * quantidade) / 2 : preco * quantidade;
-    adicionarResultadoLista('A', resultadoA);
-    adicionarHistorico('A', descricao, preco, quantidade);
+    resultA += btnB.checked ? (price * quantity) / 2 : price * quantity;
+    addToResultList('A', resultA);
+    addToHistory('A', description, price, quantity);
   }
 
   if (btnB.checked) {
-    resultadoB += btnA.checked ? (preco * quantidade) / 2 : preco * quantidade;
-    adicionarResultadoLista('B', resultadoB);
-    adicionarHistorico('B', descricao, preco, quantidade);
+    resultB += btnA.checked ? (price * quantity) / 2 : price * quantity;
+    addToResultList('B', resultB);
+    addToHistory('B', description, price, quantity);
   }
 
-  quantidadeInput.value = '';
-  precoInput.value = '';
-  descricaoInput.value = '';
+  quantityInput.value = '';
+  priceInput.value = '';
+  descriptionInput.value = '';
 }
 
-function adicionarResultadoLista(botao, resultado) {
-  const checkElement = document.getElementById(botao);
+function addToResultList(btn, result) {
+  const checkElement = document.getElementById(btn);
 
   if (checkElement) {
     const value = checkElement.querySelector('p');
-    value.textContent = `R$ ${resultado.toFixed(2)}`;
+    value.textContent = `R$ ${result.toFixed(2)}`;
   } else {
-    const item = createListItem(botao, resultado);
-    listaResultados.appendChild(item);
+    const item = createListItem(btn, result);
+    resultList.appendChild(item);
   }
 }
 
-function createListItem(botao, resultado) {
+function createListItem(btn, result) {
   const item = document.createElement('li');
   item.classList.add('item-result');
-  item.id = botao;
+  item.id = btn;
 
   const title = document.createElement('h3');
-  title.textContent = botao;
+  title.textContent = btn;
 
   const price = document.createElement('p');
-  price.textContent = `R$ ${resultado.toFixed(2)}`;
+  price.textContent = `R$ ${result.toFixed(2)}`;
 
   item.appendChild(title);
   item.appendChild(price);
@@ -69,56 +69,56 @@ function createListItem(botao, resultado) {
   return item;
 }
 
-function adicionarHistorico(botao, descricao, preco, quantidade) {
-  // item.textContent = `${botao}: ${descricao} - QTD ${quantidade} - preco R$ ${preco.toFixed(
+function addToHistory(btn, description, price, quantidade) {
+  // item.textContent = `${btn}: ${description} - QTD ${quantidade} - preco R$ ${price.toFixed(
   //   2,
   // )}`;
 
-  const item = createHistoryItem(descricao, preco, botao);
-  const deleteButton = createDeleteButton(item, preco);
+  const item = createHistoryItem(description, price, btn);
+  const deleteButton = createDeleteButton(item, price);
 
   item.appendChild(deleteButton);
-  listaHistorico.appendChild(item);
+  historyList.appendChild(item);
 }
 
-function createHistoryItem(descricao, preco, botao) {
+function createHistoryItem(description, price, btn) {
   const item = document.createElement('li');
   item.classList.add('item-history');
 
   const title = document.createElement('h3');
-  title.textContent = descricao;
+  title.textContent = description;
 
-  const price = document.createElement('p');
-  price.textContent = `R$ ${preco.toFixed(2)}`;
+  const formattedPrice = document.createElement('p');
+  formattedPrice.textContent = `R$ ${price.toFixed(2)}`;
 
-  item.setAttribute('data-user', botao);
+  item.setAttribute('data-user', btn);
   item.appendChild(title);
-  item.appendChild(price);
+  item.appendChild(formattedPrice);
 
   return item;
 }
 
-function createDeleteButton(item, preco) {
+function createDeleteButton(item, price) {
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'Deletar';
   deleteButton.addEventListener('click', () => {
-    deleteItem(item, preco);
-    listaHistorico.removeChild(item);
+    deleteItem(item, price);
+    historyList.removeChild(item);
   });
 
   return deleteButton;
 }
 
-function deleteItem(item, preco) {
+function deleteItem(item, price) {
   const itemSelected = item.getAttribute('data-user');
   if (itemSelected === 'A') {
-    resultadoA -= preco;
-    adicionarResultadoLista('A', resultadoA);
+    resultA -= price;
+    addToResultList('A', resultA);
   }
 
   if (itemSelected === 'B') {
-    resultadoB -= preco;
-    adicionarResultadoLista('B', resultadoB);
+    resultB -= price;
+    addToResultList('B', resultB);
   }
 }
 
