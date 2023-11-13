@@ -73,14 +73,15 @@ function adicionarHistorico(botao, descricao, preco, quantidade) {
   // item.textContent = `${botao}: ${descricao} - QTD ${quantidade} - preco R$ ${preco.toFixed(
   //   2,
   // )}`;
-  const item = createHistoryItem(descricao, preco);
-  const deleteButton = createDeleteButton(item);
+
+  const item = createHistoryItem(descricao, preco, botao);
+  const deleteButton = createDeleteButton(item, preco);
 
   item.appendChild(deleteButton);
   listaHistorico.appendChild(item);
 }
 
-function createHistoryItem(descricao, preco) {
+function createHistoryItem(descricao, preco, botao) {
   const item = document.createElement('li');
   item.classList.add('item-history');
 
@@ -90,21 +91,35 @@ function createHistoryItem(descricao, preco) {
   const price = document.createElement('p');
   price.textContent = `R$ ${preco.toFixed(2)}`;
 
+  item.setAttribute('data-user', botao);
   item.appendChild(title);
   item.appendChild(price);
 
   return item;
 }
 
-function createDeleteButton(item) {
+function createDeleteButton(item, preco) {
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'Deletar';
-
   deleteButton.addEventListener('click', () => {
+    deleteItem(item, preco);
     listaHistorico.removeChild(item);
   });
 
   return deleteButton;
+}
+
+function deleteItem(item, preco) {
+  const itemSelected = item.getAttribute('data-user');
+  if (itemSelected === 'A') {
+    resultadoA -= preco;
+    adicionarResultadoLista('A', resultadoA);
+  }
+
+  if (itemSelected === 'B') {
+    resultadoB -= preco;
+    adicionarResultadoLista('B', resultadoB);
+  }
 }
 
 function validateInput(inputElement) {
