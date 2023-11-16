@@ -1,7 +1,8 @@
 const resultList = document.getElementById('price-list');
 const historyList = document.getElementById('historic-list');
 
-let results = {};
+let results = [];
+let id = 0;
 
 function calculate() {
   const quantityInput = document.getElementById('quantity');
@@ -25,15 +26,35 @@ function calculate() {
     const user = checkbox.value;
     const result = (price * quantity) / checkboxes.length;
 
-    if (!results[user]) results[user] = 0;
-    results[user] += result;
-    addToResultList(user, results[user]);
-    addToHistory(user, result, description);
+    if (!results[user]) {
+      results[user] = {
+        item: [],
+        totalPrice: 0,
+      };
+    }
+    results[user].totalPrice += result;
+    results[user].item.push({
+      id: id,
+      price: result,
+    });
+    /*
+      TO-DO:
+      result.item.push is better?
+      option A id, price, users: ['a', 'b']...
+      option B id, price, users, quantity, description (better to others funcs (less props))
+      when delete item check the others users and recalculte by length (case users > 2)
+
+      think more about it zZz 04:47
+      i want sleep :p
+    */
+    addToResultList(user, results[user].totalPrice);
+    addToHistory(user, result, description, id);
   });
 
   quantityInput.value = '';
   priceInput.value = '';
   descriptionInput.value = '';
+  id++;
 }
 
 function addToResultList(btn, result) {
@@ -65,9 +86,9 @@ function createListItem(btn, result) {
   return item;
 }
 
-function addToHistory(btn, result, description) {
+function addToHistory(btn, result, description, id) {
   const item = createHistoryItem(btn, result, description);
-  const deleteButton = createDeleteButton(item, result);
+  const deleteButton = createDeleteButton(item, result, id);
 
   item.appendChild(deleteButton);
   historyList.appendChild(item);
@@ -90,21 +111,37 @@ function createHistoryItem(btn, result, description) {
   return item;
 }
 
-function createDeleteButton(item, result) {
+function createDeleteButton(item, result, id) {
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'Deletar';
   deleteButton.addEventListener('click', () => {
-    deleteItem(item, result);
+    deleteItem(item, result, id);
     historyList.removeChild(item);
   });
 
   return deleteButton;
 }
 
-function deleteItem(item, result) {
+function deleteItem(item, result, id) {
   const user = item.getAttribute('data-user');
-  results[user] -= result;
-  addToResultList(user, results[user]);
+  results[user].totalPrice -= result;
+  results[user].item.splice(id, 1);
+
+  for (const otherUser in results) {
+    if (otherUser !== user) {
+      const matchingProduct = results[otherUser].item.find(
+        (product) => product.id === id,
+      );
+
+      if (matchingProduct) {
+        results[otherUser].totalPrice += matchingProduct.price;
+        console.log(results[otherUser].totalPrice);
+        addToResultList(otherUser, results[otherUser].totalPrice);
+        // TO-DO: add to history list
+      }
+    }
+  }
+  addToResultList(user, results[user].totalPrice);
 }
 
 function validateInput(inputElement) {
