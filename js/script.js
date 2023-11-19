@@ -2,14 +2,15 @@ const resultList = document.getElementById('price-list');
 const historyList = document.getElementById('historic-list');
 
 let results = [];
+results.item = [];
 let id = 0;
 
 function calculate() {
   const quantityInput = document.getElementById('quantity');
   const priceInput = document.getElementById('price');
   const descriptionInput = document.getElementById('description');
-
   const checkboxes = document.querySelectorAll('input[name="btn"]:checked');
+
   const quantity = parseFloat(quantityInput.value);
   const price = parseFloat(priceInput.value);
   const description = descriptionInput.value;
@@ -28,25 +29,23 @@ function calculate() {
 
     if (!results[user]) {
       results[user] = {
-        item: [],
         totalPrice: 0,
       };
     }
-    results[user].totalPrice += result;
-    results[user].item.push({
-      id: id,
-      price: result,
-    });
-    /*
-      TO-DO:
-      result.item.push is better?
-      option A id, price, users: ['a', 'b']...
-      option B id, price, users, quantity, description (better to others funcs (less props))
-      when delete item check the others users and recalculte by length (case users > 2)
 
-      think more about it zZz 04:47
-      i want sleep :p
-    */
+    if (!results.item[id]) {
+      results.item[id] = {
+        id: id,
+        price: result,
+        description: description,
+        quantity: quantity,
+        user: []
+      };
+    }
+
+    results.item[id].user.push(user);
+    results[user].totalPrice += result;
+
     addToResultList(user, results[user].totalPrice);
     addToHistory(user, result, description, id);
   });
