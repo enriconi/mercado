@@ -37,6 +37,7 @@ function calculate() {
       results.item[id] = {
         id: id,
         price: result,
+        originalPrice: (price * quantity),
         description: description,
         quantity: quantity,
         user: []
@@ -87,7 +88,7 @@ function createListItem(btn, result) {
 
 function addToHistory(btn, result, description, id) {
   const item = createHistoryItem(btn, result, description);
-  const deleteButton = createDeleteButton(item, result, id);
+  const deleteButton = createDeleteButton(item, id);
 
   item.appendChild(deleteButton);
   historyList.appendChild(item);
@@ -110,37 +111,35 @@ function createHistoryItem(btn, result, description) {
   return item;
 }
 
-function createDeleteButton(item, result, id) {
+function createDeleteButton(item, id) {
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'Deletar';
   deleteButton.addEventListener('click', () => {
-    deleteItem(item, result, id);
+    deleteItem(item, id);
     historyList.removeChild(item);
   });
 
   return deleteButton;
 }
 
-function deleteItem(item, result, id) {
+function deleteItem(item, id) {
   const user = item.getAttribute('data-user');
-  results[user].totalPrice -= result;
-  results[user].item.splice(id, 1);
 
-  for (const otherUser in results) {
-    if (otherUser !== user) {
-      const matchingProduct = results[otherUser].item.find(
-        (product) => product.id === id,
-      );
+  results.item.forEach(product => {
+    if (product.id === id) {
+      const index = product.user.indexOf(user);
+      results[user].totalPrice -= product.price;
+      addToResultList(user, results[user].totalPrice);
+      product.user.splice(index, 1);
 
-      if (matchingProduct) {
-        results[otherUser].totalPrice += matchingProduct.price;
-        console.log(results[otherUser].totalPrice);
-        addToResultList(otherUser, results[otherUser].totalPrice);
-        // TO-DO: add to history list
-      }
+      product.user.forEach(user => {
+        results[user].totalPrice += product.price / product.user.length;
+        addToResultList(user, results[user].totalPrice);
+      })
+
+      product.price = (product.originalPrice / product.user.length);
     }
-  }
-  addToResultList(user, results[user].totalPrice);
+  })
 }
 
 function validateInput(inputElement) {
