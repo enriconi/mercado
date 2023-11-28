@@ -97,6 +97,8 @@ function addToHistory(btn, result, description, id) {
 function createHistoryItem(btn, result, description) {
   const item = document.createElement('li');
   item.classList.add('item-history');
+  const wrapperDiv = document.createElement('div');
+  wrapperDiv.classList.add('item-wrapper');
 
   const title = document.createElement('h3');
   title.textContent = description;
@@ -105,15 +107,19 @@ function createHistoryItem(btn, result, description) {
   formattedPrice.textContent = `R$ ${result.toFixed(2)}`;
 
   item.setAttribute('data-user', btn);
-  item.appendChild(title);
-  item.appendChild(formattedPrice);
+  wrapperDiv.appendChild(title);
+  wrapperDiv.appendChild(formattedPrice);
+  item.appendChild(wrapperDiv);
 
   return item;
 }
 
 function createDeleteButton(item, id) {
   const deleteButton = document.createElement('button');
-  deleteButton.textContent = 'Deletar';
+  deleteButton.classList.add('delete-button');
+  deleteButton.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+`;
   deleteButton.addEventListener('click', () => {
     deleteItem(item, id);
     historyList.removeChild(item);

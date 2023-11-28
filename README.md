@@ -8,4 +8,6 @@
 - [ ] Light mode;
 - [ ] Download json items;
 - [x] Form validation;
-- [ ] Tag items (?).
+- [ ] Tag items;
+- [ ] Modal to confirm item deletion;
+- [ ] Modal to select quantity of users;

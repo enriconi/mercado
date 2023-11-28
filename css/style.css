@@ -27,8 +27,15 @@ body {
   flex-direction: column;
   gap: 24px;
   padding: 24px;
-  background-color: #202024;
+  background-color: #0C0C0D;
   min-height: 100vh;
+}
+
+@media (min-width: 720px) {
+  body {
+    max-width: 720px;
+    margin: 0 auto; 
+  }
 }
 
 .container-input {
@@ -37,23 +44,33 @@ body {
   gap: 12px;
 }
 
+@media (min-width: 720px) {
+  .container-input {
+    flex-direction: row;
+  }
+}
+
 .container-input input {
   padding: 16px;
-  background-color: #121214;
-  border-radius: 6px;
   border: none;
   outline: none;
 
   font-size: 16px;
   font-weight: 400;
-  color: #7c7c8a;
+  color: #FBF9FE;
+  
+  border-radius: 8px;
+  border: 1px solid #252529;
+  background-color: #111112;
+
+  flex: 1;
 }
 
 .btn-calcular {
   padding: 12px 20px;
   background-color: #00875f;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   
   font-size: 16px;
   font-weight: 700;
@@ -64,6 +81,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 8px;
+  margin-bottom: 24px;
 }
 
 .checkbox-button {
@@ -75,56 +93,62 @@ body {
 
   background-color: #29292E;
   padding: 16px 24px;
-  border-radius: 6px;
+  border-radius: 8px;
+  border: 1px solid #555;
   cursor: pointer;
 
   font-size: 16px;
   font-weight: 400;
-  color: #c4c4cc;
+  color: #FBF9FE;
 }
 
 h2 {
   font-size: 20px;
   font-weight: 400;
-  color: #c4c4cc;
+  color: #FBF9FE;
 }
 
 .item-result {
   display: flex;
   flex-direction: column;
   gap: 2px;
-
-  background-color: #323238;
   padding: 16px;
-  border-radius: 6px;
+
+  border-radius: 8px;
+  border: 1px solid #252529;
+  background-color: #17171a;
 }
 
 .item-result h3 {
   font-size: 16px;
   font-weight: 400;
-  color: #c4c4cc;
+  color: #AFABB6;
 }
 
 .item-result p {
   font-size: 24px;
   font-weight: 700;
-  color: #e1e1e6;
+  color: #FBF9FE;
 }
 
 .item-history {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   gap: 4px;
    
-  background-color: #29292e;
   padding: 20px;
-  border-radius: 6px;
+
+  border-radius: 8px;
+  border: 1px solid #252529;
+  background-color: #17171a;
 }
 
 .item-history h3 {
   font-size: 16px;
   font-weight: 400;
-  color: #c4c4cc;
+  color: #FBF9FE;
 }
 
 .item-history p {
@@ -143,4 +167,27 @@ h2 {
 input.error {
   border: 1px solid !important;
   border-color: red !important;
+}
+
+.delete-button {
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+
+  color: #fdebee;
+  background-color: #e74f3e;
+  border-radius: 50%;
+}
+
+.item-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
