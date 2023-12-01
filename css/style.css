@@ -22,7 +22,7 @@ ul {
   list-style: none;
 }
 
-body {
+.theme {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -32,25 +32,25 @@ body {
 }
 
 @media (min-width: 720px) {
-  body {
+  .theme {
     max-width: 720px;
     margin: 0 auto; 
   }
 }
 
-.container-input {
+.input {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
 @media (min-width: 720px) {
-  .container-input {
+  .input {
     flex-direction: row;
   }
 }
 
-.container-input input {
+.input__field {
   padding: 16px;
   border: none;
   outline: none;
@@ -66,7 +66,7 @@ body {
   flex: 1;
 }
 
-.btn-calcular {
+.btn {
   padding: 12px 20px;
   background-color: #00875f;
   border: none;
@@ -77,14 +77,14 @@ body {
   color: #FBF9FE;
 }
 
-.container-checkbox {
+.checkbox {
   display: flex;
   flex-direction: row;
   gap: 8px;
   margin-bottom: 24px;
 }
 
-.checkbox-button {
+.checkbox__button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,14 +157,13 @@ h2 {
   color: #f75a68;
 }
 
-#price-list,
-#historic-list {
+.list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-input.error {
+.input__field.error {
   border: 1px solid red;
 }
 
@@ -191,7 +190,7 @@ input.error {
   gap: 2px;
 }
 
-.btn-theme {
+.theme__btn {
   display: flex;
   align-self: flex-end;
   width: 30px;
@@ -200,24 +199,23 @@ input.error {
   stroke: var(--gray-100);
 }
 
-.sun {
+.theme__btn--sun {
   display: none;
 }
 
-.dark-theme .moon {
+.theme--dark .theme__btn--moon {
   display: none;
 }
 
-.dark-theme .sun {
+.theme--dark .theme__btn--sun {
   display: block;
 }
 
-body {
+.theme {
   transition: background-color .3s ease, color 0.5s ease;
 }
 
-/* TO-DO: improve var  */
-.light-theme {
+.theme--light {
   --background-body: #F4F4F4;
   --background-checkbox: #FFFFFF;
   --gray-100: #17171A; 
@@ -229,7 +227,7 @@ body {
 }
 
 
-.dark-theme {
+.theme--dark {
   --background-body: #0C0C0D;
   --background-checkbox: #252529;
   --gray-100: #FBF9FE;

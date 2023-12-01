@@ -159,6 +159,6 @@ function validateInput(inputElement) {
 }
 
 function changeTheme() {
-  document.body.classList.toggle('dark-theme');
-  document.body.classList.toggle('light-theme');
+  document.body.classList.toggle('theme--dark');
+  document.body.classList.toggle('theme--light');
 }
