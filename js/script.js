@@ -157,3 +157,8 @@ function validateInput(inputElement) {
     return true;
   }
 }
+
+function changeTheme() {
+  document.body.classList.toggle('dark-theme');
+  document.body.classList.toggle('light-theme');
+}
