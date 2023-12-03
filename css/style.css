@@ -66,10 +66,11 @@ ul {
   flex: 1;
 }
 
-.btn {
+.btn--calculate {
   padding: 12px 20px;
   background-color: #00875f;
   border: none;
+  cursor: pointer;
   border-radius: 8px;
   
   font-size: 16px;
