@@ -146,6 +146,16 @@ function deleteItem(item, id) {
       product.price = (product.originalPrice / product.user.length);
     }
   })
+
+  while (historyList.firstChild) {
+    historyList.removeChild(historyList.firstChild);
+  }
+
+  results.item.forEach(product => {
+    product.user.forEach(user => {
+      addToHistory(user, product.price, product.description, product.id);
+    });
+  });
 }
 
 function validateInput(inputElement) {
