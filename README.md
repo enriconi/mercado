@@ -6,7 +6,7 @@
 - [x] Finish historic items;
 - [x] Delete items and recalculate price;
 - [x] Light mode;
-- [ ] Download json items;
+- [x] Download json items;
 - [x] Form validation;
 - [ ] Tag items;
 - [ ] Modal to confirm item deletion;

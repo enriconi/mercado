@@ -78,6 +78,18 @@ ul {
   color: #FBF9FE;
 }
 
+.btn--download {
+  padding: 12px 20px;
+  border: 3px solid #00875f;
+  cursor: pointer;
+  border-radius: 8px;
+  
+  font-size: 16px;
+  font-weight: 700;
+  background-color: var(--gray-100);
+  color: var(--gray-300);
+}
+
 .checkbox {
   display: flex;
   flex-direction: row;

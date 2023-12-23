@@ -85,7 +85,7 @@ function createListItem(btn, result) {
 
   return item;
 }
-
+// 
 function addToHistory(btn, result, description, id) {
   const item = createHistoryItem(btn, result, description);
   const deleteButton = createDeleteButton(item, id);
@@ -171,4 +171,27 @@ function validateInput(inputElement) {
 function changeTheme() {
   document.body.classList.toggle('theme--dark');
   document.body.classList.toggle('theme--light');
+}
+
+function downloadJSON() {
+  const jsonContent = JSON.stringify(results.item, null, 2);
+  const blob = new Blob([jsonContent], { type: 'application/json' });
+  const link = document.createElement('a');
+
+  link.download = generateFileName('mercado');
+  link.href = window.URL.createObjectURL(blob);
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function generateFileName(name) {
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().slice(0, 10);
+  const hours = String(currentDate.getHours()).padStart(2, '0');
+  const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+  const generatedName = `${name}_${formattedDate}_${hours}:${minutes}`;
+
+  return generatedName;
 }
