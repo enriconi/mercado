@@ -122,7 +122,7 @@ function createDeleteButton(item, id) {
 `;
   deleteButton.addEventListener('click', () => {
     deleteItem(item, id);
-    historyList.removeChild(item);
+    if (item.parentNode) item.parentNode.removeChild(item);
   });
 
   return deleteButton;
