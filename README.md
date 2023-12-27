@@ -10,6 +10,6 @@
 - [x] Form validation;
 - [ ] Modal to confirm item deletion;
 - [x] Reload historic list when delete a item;
-- [ ] Add more infos about the user on the historic card (ex: (quantity \* price), user card);
+- [x] Add more infos about the user on the historic card (ex: (quantity \* price), user card);
 - [ ] Tag items;
-- [ ] Modal to select quantity of users.
+- [ ] Modal to select quantity of users;
