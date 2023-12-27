@@ -158,16 +158,26 @@ h2 {
   background-color: var(--gray-700);
 }
 
-.item-history h3 {
+.item-history__title {
   font-size: 16px;
   font-weight: 400;
   color: var(--gray-100);
+
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
 }
 
-.item-history p {
+.item-history__price {
   font-size: 20px;
   font-weight: 700;
   color: #f75a68;
+}
+
+.item-history__user {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-200);
 }
 
 .list {

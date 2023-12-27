@@ -85,30 +85,37 @@ function createListItem(btn, result) {
 
   return item;
 }
-// 
-function addToHistory(btn, result, description, id) {
-  const item = createHistoryItem(btn, result, description);
+
+function addToHistory(user, result, description, id) {
+  const item = createHistoryItem(user, result, description);
   const deleteButton = createDeleteButton(item, id);
 
   item.appendChild(deleteButton);
   historyList.appendChild(item);
 }
 
-function createHistoryItem(btn, result, description) {
+function createHistoryItem(user, result, description) {
   const item = document.createElement('li');
   item.classList.add('item-history');
   const wrapperDiv = document.createElement('div');
   wrapperDiv.classList.add('item-wrapper');
 
   const title = document.createElement('h3');
+  title.classList.add('item-history__title');
   title.textContent = description;
 
   const formattedPrice = document.createElement('p');
+  formattedPrice.classList.add('item-history__price');
   formattedPrice.textContent = `R$ ${result.toFixed(2)}`;
 
-  item.setAttribute('data-user', btn);
+  const userInfo = document.createElement('span');
+  userInfo.classList.add('item-history__user');
+  userInfo.textContent = '/ ' + user;
+
+  item.setAttribute('data-user', user);
   wrapperDiv.appendChild(title);
   wrapperDiv.appendChild(formattedPrice);
+  title.appendChild(userInfo);
   item.appendChild(wrapperDiv);
 
   return item;
