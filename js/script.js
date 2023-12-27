@@ -13,12 +13,11 @@ function calculate() {
 
   const quantity = parseFloat(quantityInput.value);
   const price = parseFloat(priceInput.value);
-  const description = descriptionInput.value;
+  const description = descriptionInput.value ? formattedNameItem(descriptionInput.value) : `Produto ${id + 1}`;
 
   if (
     !validateInput(quantityInput) ||
-    !validateInput(priceInput) ||
-    !validateInput(descriptionInput)
+    !validateInput(priceInput)
   ) {
     return;
   }
@@ -201,4 +200,8 @@ function generateFileName(name) {
   const generatedName = `${name}_${formattedDate}_${hours}:${minutes}`;
 
   return generatedName;
+}
+
+function formattedNameItem(name) {
+  return name[0].toUpperCase() + name.slice(1);
 }
