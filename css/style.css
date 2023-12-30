@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -76,18 +77,6 @@ ul {
   font-size: 16px;
   font-weight: 700;
   color: #FBF9FE;
-}
-
-.btn--download {
-  padding: 12px 20px;
-  border: 3px solid #00875f;
-  cursor: pointer;
-  border-radius: 8px;
-  
-  font-size: 16px;
-  font-weight: 700;
-  background-color: var(--gray-100);
-  color: var(--gray-300);
 }
 
 .checkbox {
@@ -213,6 +202,13 @@ h2 {
   gap: 2px;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .theme__btn {
   display: flex;
   align-self: flex-end;
@@ -249,7 +245,6 @@ h2 {
   --gray-700: #FFFFFF; 
 }
 
-
 .theme--dark {
   --background-body: #0C0C0D;
   --background-checkbox: #252529;
@@ -259,4 +254,80 @@ h2 {
   --gray-500: #555555;
   --gray-600: #0C0C0D;
   --gray-700: #17171A;
+}
+
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 10px;
+}
+
+.menu li a,
+.menu li button {
+  display: block;
+  border: none;
+  text-decoration: none;
+  background: transparent;
+  padding: 10px;
+  cursor: pointer;
+  
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gray-100);
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+}
+
+[data-menu="button"] {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  [data-menu="button"] {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    cursor: pointer;
+
+    padding: 8px 16px;
+    border-radius: 4px;
+    
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    color: var(--gray-100);
+    background-color: var(--background-checkbox);
+  }
+
+  [data-menu="button"]::before {
+    content: '';
+    display: inline-block;
+    height: 2px;
+    width: 12px;
+    background-color: var(--gray-100);
+    box-shadow: 0 4px var(--gray-100), 0 -4px var(--gray-100);
+    transition: transform .3s;
+  }
+
+  [data-menu="button"].active::before {
+    transform: rotate(90deg);
+  }
+
+  #menu {
+    display: none;
+    position: absolute;
+    top: 65px;
+
+    background-color: var(--background-checkbox);
+    border: 1px solid var(--gray-500);
+    color: var(--gray-100);
+    border-radius: 6px;
+  }
+
+  #menu.active {
+    display: block;
+    animation: show-right .3s forwards;
+  }
 }
