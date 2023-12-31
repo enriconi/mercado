@@ -140,6 +140,7 @@ function createDeleteButton(item, id) {
 
 function deleteItem(item, id) {
   const user = item.getAttribute('data-user');
+  document.getElementById('searchInput').value = '';
 
   results.item.forEach(product => {
     if (product.id === id) {
