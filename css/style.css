@@ -228,32 +228,6 @@ h2 {
   display: block;
 }
 
-.theme {
-  transition: background-color .3s ease, color 0.5s ease;
-}
-
-.theme--light {
-  --background-body: #F4F4F4;
-  --background-checkbox: #FFFFFF;
-  --gray-100: #17171A; 
-  --gray-200: #707070;
-  --gray-300: #E0E0E0; 
-  --gray-500: #E0E0E0; 
-  --gray-600: #FFFFFF; 
-  --gray-700: #FFFFFF; 
-}
-
-.theme--dark {
-  --background-body: #0C0C0D;
-  --background-checkbox: #252529;
-  --gray-100: #FBF9FE;
-  --gray-200: #AFABB6;
-  --gray-300: #252529;
-  --gray-500: #555555;
-  --gray-600: #0C0C0D;
-  --gray-700: #17171A;
-}
-
 .menu ul {
   display: flex;
   flex-wrap: wrap;
@@ -337,4 +311,54 @@ h2 {
     flex-direction: column;
     animation: show-right .3s forwards;
   }
+}
+
+#historic-list {
+  max-height: 300px;
+  overflow: auto;
+}
+
+@media (min-width: 700px) {
+  #historic-list li {
+    margin-right: 4px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--gray-300);
+    border-radius: 4px;
+  }
+}
+
+.theme {
+  transition: background-color .3s ease, color 0.5s ease;
+}
+
+.theme--light {
+  --background-body: #F4F4F4;
+  --background-checkbox: #FFFFFF;
+  --gray-100: #17171A; 
+  --gray-200: #707070;
+  --gray-300: #E0E0E0; 
+  --gray-500: #E0E0E0; 
+  --gray-600: #FFFFFF; 
+  --gray-700: #FFFFFF; 
+}
+
+.theme--dark {
+  --background-body: #0C0C0D;
+  --background-checkbox: #252529;
+  --gray-100: #FBF9FE;
+  --gray-200: #AFABB6;
+  --gray-300: #252529;
+  --gray-500: #555555;
+  --gray-600: #0C0C0D;
+  --gray-700: #17171A;
 }
