@@ -1,5 +1,5 @@
 const resultList = document.getElementById('price-list');
-const historyList = document.getElementById('historic-list');
+const historicList = document.getElementById('historic-list');
 
 const btnMenu = document.querySelector('[data-menu="button"]');
 const listMenu = document.querySelector('[data-menu="list"]');
@@ -17,7 +17,7 @@ function calculate() {
 
   const quantity = parseFloat(quantityInput.value);
   const price = parseFloat(priceInput.value);
-  const description = descriptionInput.value ? formattedNameItem(descriptionInput.value) : `Produto ${id + 1}`;
+  const description = descriptionInput.value ? formatNameItem(descriptionInput.value) : `Produto ${id + 1}`;
 
   if (
     !validateInput(quantityInput) ||
@@ -65,7 +65,7 @@ function addToResultList(btn, result) {
 
   if (checkElement) {
     const value = checkElement.querySelector('p');
-    value.textContent = `R$ ${result.toFixed(2)}`;
+    value.textContent = formatPrice(result);
   } else {
     const item = createListItem(btn, result);
     resultList.appendChild(item);
@@ -81,7 +81,7 @@ function createListItem(btn, result) {
   title.textContent = btn;
 
   const price = document.createElement('p');
-  price.textContent = `R$ ${result.toFixed(2)}`;
+  price.textContent = formatPrice(result);
 
   item.appendChild(title);
   item.appendChild(price);
@@ -94,7 +94,7 @@ function addToHistory(user, result, description, id) {
   const deleteButton = createDeleteButton(item, id);
 
   item.appendChild(deleteButton);
-  historyList.appendChild(item);
+  historicList.appendChild(item);
 }
 
 function createHistoryItem(user, result, description) {
@@ -107,9 +107,9 @@ function createHistoryItem(user, result, description) {
   title.classList.add('item-history__title');
   title.textContent = description;
 
-  const formattedPrice = document.createElement('p');
-  formattedPrice.classList.add('item-history__price');
-  formattedPrice.textContent = `R$ ${result.toFixed(2)}`;
+  const price = document.createElement('p');
+  price.classList.add('item-history__price');
+  price.textContent = formatPrice(result);
 
   const userInfo = document.createElement('span');
   userInfo.classList.add('item-history__user');
@@ -117,7 +117,7 @@ function createHistoryItem(user, result, description) {
 
   item.setAttribute('data-user', user);
   wrapperDiv.appendChild(title);
-  wrapperDiv.appendChild(formattedPrice);
+  wrapperDiv.appendChild(price);
   title.appendChild(userInfo);
   item.appendChild(wrapperDiv);
 
@@ -157,8 +157,8 @@ function deleteItem(item, id) {
     }
   })
 
-  while (historyList.firstChild) {
-    historyList.removeChild(historyList.firstChild);
+  while (historicList.firstChild) {
+    historicList.removeChild(historicList.firstChild);
   }
 
   results.item.forEach(product => {
@@ -206,8 +206,12 @@ function generateFileName(name) {
   return generatedName;
 }
 
-function formattedNameItem(name) {
+function formatNameItem(name) {
   return name[0].toUpperCase() + name.slice(1);
+}
+
+function formatPrice(price) {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
 }
 
 function outsideClick(element, events, callback) {
@@ -245,3 +249,15 @@ function openMenu() {
 events.forEach((userEvent) => {
   btnMenu.addEventListener(userEvent, openMenu);
 });
+
+function searchProducts() {
+  const input = document.getElementById('searchInput').value.toLowerCase();
+  const filteredResults = results.item.filter((item) => item.description.toLowerCase().includes(input));
+  historicList.innerHTML = '';
+
+  filteredResults.forEach(item => {
+    item.user.forEach(user => {
+      addToHistory(user, item.price, item.description, item.id);
+    })
+  })
+}
