@@ -257,8 +257,12 @@ h2 {
 .menu ul {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
-  gap: 10px;
+  gap: 8px;
+}
+
+.menu li:hover {
+  background-color: var(--gray-700);
+  border-radius: 4px;
 }
 
 .menu li a,
@@ -299,6 +303,10 @@ h2 {
     background-color: var(--background-checkbox);
   }
 
+  .menu ul {
+    padding: 10px;
+  }
+
   [data-menu="button"]::before {
     content: '';
     display: inline-block;
@@ -325,7 +333,8 @@ h2 {
   }
 
   #menu.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
     animation: show-right .3s forwards;
   }
 }
