@@ -237,7 +237,8 @@ function outsideClick(element, events, callback) {
   }
 }
 
-function openMenu() {
+function openMenu(event) {
+  event.preventDefault();
   listMenu.classList.add('active');
   btnMenu.classList.add('active');
 
